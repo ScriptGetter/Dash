@@ -1,0 +1,42 @@
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wizard"))()
+
+local Window = Library:NewWindow("Hook")
+
+local Tab = Window:NewSection("Main")
+
+Tab:CreateButton("Hitbox", function()
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+_G.HeadSize = 20
+_G.Disabled = true
+
+game:GetService('RunService').RenderStepped:connect(function()
+if _G.Disabled then
+for i,v in next, game:GetService('Players'):GetPlayers() do
+if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+pcall(function()
+v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+v.Character.HumanoidRootPart.Transparency = 0.7
+v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Gray")
+v.Character.HumanoidRootPart.Material = "None"
+v.Character.HumanoidRootPart.CanCollide = false
+end)
+end
+end
+end
+end)
+print("hello")
+
+end)
+
+Tab:CreateTextbox("Speed", function(text)
+local speed = tonumber(txt)
+    if speed then
+        game.Players.LocalPlayer.Character:WaitForChild("Humanoid").WalkSpeed = speed
+        print("Speed set to: " .. speed)
+    else
+        print("Invalid speed entered!")
+    end
+
+end)
